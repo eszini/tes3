@@ -1,0 +1,50 @@
+
+#if 1
+
+int	pro_prue3()
+{
+
+	int	i,j,k;
+	char	d1[MAXV];
+	int	ql,qlf;
+	int	flag;
+	int	q_ptr;
+
+	FILE	*hw;
+
+
+	char	z[MAXV];
+	sprintf (z,"prue3");
+
+	/* proceso */
+	if (gp_fverbose("d1"))
+	{	printf ("%s%s%s\n\n",gp_tm(),gp_m[0],z);
+	}
+
+	if ( !1 || !2)
+		gp_uso(0);
+
+
+	for (i=0; i<100; i++)
+	{
+
+		for (j=0; j<5; j++)
+		{
+			mne[i][j] = ( nep ) malloc (sizeof(ne));
+			if ( mne[i][j] == NULL )
+				error(951);
+
+
+		}
+	}
+
+		
+	/* proceso */
+	if (gp_fverbose("d1"))
+	{	printf ("%s%s%s\n\n",gp_tm(),gp_m[1],z);
+	}
+}
+
+
+
+#endif
