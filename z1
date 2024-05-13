@@ -1,5 +1,36 @@
 
+
 #if 1
+
+
+
+typedef	struct	tne	*nep;
+typedef	struct	tne
+{	
+	char	*n;			/* name */
+	int	v1;			/* usos varios */
+	int	v2;
+	int	v3;
+	char	ne_n[64];		/* provisorio ... nombre del nodo */
+}	ne;
+
+ne	nes1,nes2,*nep1,*nep2,**ner1,**rnr2;
+
+ne	*mne[100][5];
+
+
+
+ne	*w(x,y)
+int	x;
+int	y;
+{
+	return mne[x][y];
+}
+
+
+#define	W(x,y,z)	(*w(x,y)).z
+#define	q(x,y,z)	(*w(x,y)).z
+
 
 int	pro_prue3()
 {
@@ -27,14 +58,26 @@ int	pro_prue3()
 
 	for (i=0; i<100; i++)
 	{
-
 		for (j=0; j<5; j++)
 		{
 			mne[i][j] = ( nep ) malloc (sizeof(ne));
 			if ( mne[i][j] == NULL )
 				error(951);
 
+			sprintf ( (*mne[i][j]).ne_n,"neu_%3d_%3d",i,j );
+		}
+	}
 
+	for (i=0; i<100; i++)
+	{
+		for (j=0; j<5; j++)
+		{
+
+			printf ("%3d %3d %s \n",i,j,(*mne[i][j]).ne_n);
+			printf ("%3d %3d %s \n",i,j,w(i,j)->ne_n);
+			printf ("%3d %3d %s \n",i,j,(*w(i,j)).ne_n);
+			printf ("%3d %3d %s \n",i,j,W(i,j,ne_n) );
+			printf ("%3d %3d %s \n",i,j,q(i,j,ne_n) );
 		}
 	}
 
@@ -48,3 +91,5 @@ int	pro_prue3()
 
 
 #endif
+
+

@@ -803,6 +803,8 @@ int	proceso_principal()
 			pro_exec1();
 		if (ffexc == 2)
 			pro_exec2();
+		if (ffexc == 3)
+			pro_exec3();
 	}
 
 	if ( ffpro)
@@ -1337,17 +1339,136 @@ int	pro_exec1()
 /*
  * -----------------------------------------------------------------------------------
  *
- *	(MMM)
- *
  *	pro_exec 2
  *
- *	exec aparte ...
+ *	otros procesos ...  
  *
  * -----------------------------------------------------------------------------------
  */
 
+/* locator EE1 */
 
 
+#if 1
+
+/*
+ *	pro_exec2
+ *
+ *	tercer intento de tesis
+ *	redes neuronales !
+ *
+ */
+
+
+typedef void (*hptr)(int);
+void h1(int x) { printf("Funcion 1: %d\n", x); }
+void h2(int x) { printf("Funcion 2: %d\n", x); }
+void h3(int x) { printf("Funcion 3: %d\n", x); }
+
+
+typedef	struct	tne	*nep;
+typedef	struct	tne
+{	
+	char	*n;			/* name */
+	int	v1;			/* usos varios */
+	int	v2;
+	int	v3;
+	char	ne_n[64];		/* provisorio ... nombre del nodo */
+	int	(*w1[3])(int);			/* puntero a funcion */
+	hptr	fx[3];
+}	ne;
+
+ne	nes1,nes2,*nep1,*nep2,**ner1,**rnr2;
+
+ne	*mne[100][5];
+
+
+
+ne	*w(x,y)
+int	x;
+int	y;
+{
+	return mne[x][y];
+}
+
+
+#define	W(x,y,z)	(*w(x,y)).z
+#define	q(x,y,z)	(*w(x,y)).z
+
+
+int	pro_exec2()
+{
+
+	int	i,j,k;
+	char	d1[MAXV];
+	int	ql,qlf;
+	int	flag;
+	int	q_ptr;
+
+	FILE	*hw;
+
+
+	char	z[MAXV];
+	sprintf (z,"exec3");
+
+	/* proceso */
+	if (gp_fverbose("d1"))
+	{	printf ("%s%s%s\n\n",gp_tm(),gp_m[0],z);
+	}
+
+	if ( !1 || !2)
+		gp_uso(0);
+
+
+	for (i=0; i<100; i++)
+	{
+		for (j=0; j<5; j++)
+		{
+			mne[i][j] = ( nep ) malloc (sizeof(ne));
+			if ( mne[i][j] == NULL )
+				error(951);
+
+			sprintf ( (*mne[i][j]).ne_n,"neu_%03d_%03d",i,j );
+		}
+	}
+
+	for (i=0; i<100; i++)
+	{
+		for (j=0; j<5; j++)
+		{
+
+			printf ("%3d %3d |%s| |%s| |%s| |%s| %s \n",i,j,
+				(*mne[i][j]).ne_n,
+				w(i,j)->ne_n,
+				(*w(i,j)).ne_n,
+				W(i,j,ne_n),
+				"  <-");
+		}
+	}
+
+		
+	/* proceso */
+	if (gp_fverbose("d1"))
+	{	printf ("%s%s%s\n\n",gp_tm(),gp_m[1],z);
+	}
+}
+
+
+
+#endif
+
+
+
+
+/*
+ *	pro_exec2
+ *
+ *	descripcion
+ *
+ */
+
+
+#if 0
 
 int	pro_exec2()
 {
@@ -1366,6 +1487,60 @@ int	pro_exec2()
 
 }
 
+
+#endif
+
+
+/*
+ * -----------------------------------------------------------------------------------
+ *
+ *	pro_exec 3
+ *
+ *	otros procesos ...
+ *
+ * -----------------------------------------------------------------------------------
+ */
+
+
+#if 1
+
+
+int	pro_exec3()
+{
+
+	int	i,j,k;
+	int	f1,f2,f3;
+	char	b1[MAXB];
+	char	b2[MAXB];
+
+	FILE	*hw;
+
+
+	char	z[MAXV];
+	sprintf (z,"exec3");
+
+	/* proceso */
+	if (gp_fverbose("d1"))
+	{	printf ("%s%s%s\n\n",gp_tm(),gp_m[0],z);
+	}
+
+	if ( !1 || !2)
+		gp_uso(0);
+
+
+	/* bloque principal */
+
+
+		
+	/* proceso */
+	if (gp_fverbose("d1"))
+	{	printf ("%s%s%s\n\n",gp_tm(),gp_m[1],z);
+	}
+}
+
+
+
+#endif
 
 
 
@@ -2551,21 +2726,72 @@ int	pro_prue2()
  * -----------------------------------------------------------------------------------
  */
 
+/*
+ *	pro_prue3
+ *
+ *	pruebas de funciones
+ *
+ */
 
-#if 0
+
+/* locator EE2 */
+
+
+#if 1
 
 
 
+typedef int (*ffp)(int,int);
+
+int	hfa(w1,w2) int	w1,w2; { int	r; r = 0 + w1 + w2; return r; }
+
+int	hf0(w1,w2) int	w1,w2; { int	r; printf ("F0: "); r = 0 + w1 + w2; return r; }
+int	hf1(w1,w2) int	w1,w2; { int	r; printf ("F1: "); r = 1 + w1 + w2; return r; }
+int	hf2(w1,w2) int	w1,w2; { int	r; printf ("F2: "); r = 2 + w1 + w2; return r; }
+int	hf3(w1,w2) int	w1,w2; { int	r; printf ("F3: "); r = 3 + w1 + w2; return r; }
+int	hf4(w1,w2) int	w1,w2; { int	r; printf ("F4: "); r = 4 + w1 + w2; return r; }
+int	hf5(w1,w2) int	w1,w2; { int	r; printf ("F5: "); r = 5 + w1 + w2; return r; }
+int	hf6(w1,w2) int	w1,w2; { int	r; printf ("F6: "); r = 6 + w1 + w2; return r; }
+int	hf7(w1,w2) int	w1,w2; { int	r; printf ("F7: "); r = 7 + w1 + w2; return r; }
+int	hf8(w1,w2) int	w1,w2; { int	r; printf ("F8: "); r = 8 + w1 + w2; return r; }
+int	hf9(w1,w2) int	w1,w2; { int	r; printf ("F9: "); r = 9 + w1 + w2; return r; }
+
+
+ffp	hhg[10] = { &hf0,&hf1,&hf2,&hf3,&hf4,&hf5,&hf6,&hf7,&hf8,&hf9 } ;
+
+ffp	*hs1;
+
+
+/* Declara el tipo de función que deseas apuntar */
+typedef void (*FuncPtr)(int);
+
+
+/* Define algunas funciones que coincidan con este tipo */
+void funcion1(int x) {
+    printf("Funcion 1: %d\n", x);
+}
+
+void funcion2(int x) {
+    printf("Funcion 2: %d\n", x);
+}
+
+void funcion3(int x) {
+    printf("Funcion 3: %d\n", x);
+}
+
+
+    FuncPtr funciones[3];
+
+FuncPtr	hhf[3] = { &funcion1 , &funcion2 , &funcion3 };
 
 
 int	pro_prue3()
 {
 
 	int	i,j,k;
-	char	d1[MAXV];
-	int	ql,qlf;
-	int	flag;
-	int	q_ptr;
+	int	f1,f2,f3;
+	char	b1[MAXB];
+	char	b2[MAXB];
 
 	FILE	*hw;
 
@@ -2578,8 +2804,38 @@ int	pro_prue3()
 	{	printf ("%s%s%s\n\n",gp_tm(),gp_m[0],z);
 	}
 
+	/* chequeo reqs */
 	if ( !1 || !2)
 		gp_uso(0);
+
+
+	/* bloque principal */
+
+	/* 01 - vector de punteros a funciones de un argumento */
+
+	/* Asigna las direcciones de las funciones al vector */
+	funciones[0] = &funcion1;
+	funciones[1] = &funcion2;
+	funciones[2] = &funcion3;
+
+	/* Usa el vector de punteros a funciones */
+	for (i = 0; i < 3; i++) 
+	{
+	        funciones[i](i + 1); 
+	}
+
+
+	printf ("\n\n");
+
+	hs1 = &hhg[0];
+
+	for (i=0; i<10; i++)
+	{
+		printf ("R%02d:    %3d \n", i,   (**hs1[i])(i,i*10000+100000) );
+	}
+
+
+
 
 
 		
@@ -4395,7 +4651,6 @@ int	*ql_f;
 
 }
 
-/* locator EEE */
 
 
 int	fix_dec_var1()
@@ -6896,86 +7151,33 @@ char	*s;
 
 
 
-#if 1
+#if 0
 
-
-
-typedef	struct	tne	*nep;
-typedef	struct	tne
-{	
-	char	*n;			/* name */
-	int	v1;			/* usos varios */
-	int	v2;
-	int	v3;
-	char	ne_n[64];		/* provisorio ... nombre del nodo */
-}	ne;
-
-ne	nes1,nes2,*nep1,*nep2,**ner1,**rnr2;
-
-ne	*mne[100][5];
-
-
-
-ne	*w(x,y)
-int	x;
-int	y;
-{
-	return mne[x][y];
-}
-
-
-#define	W(x,y,z)	(*w(x,y)).z
-#define	q(x,y,z)	(*w(x,y)).z
-
-
-int	pro_prue3()
+int	pro_XXX()
 {
 
 	int	i,j,k;
-	char	d1[MAXV];
-	int	ql,qlf;
-	int	flag;
-	int	q_ptr;
+	int	f1,f2,f3;
+	char	b1[MAXB];
+	char	b2[MAXB];
 
 	FILE	*hw;
 
 
 	char	z[MAXV];
-	sprintf (z,"prue3");
+	sprintf (z,"XXX");
 
 	/* proceso */
 	if (gp_fverbose("d1"))
 	{	printf ("%s%s%s\n\n",gp_tm(),gp_m[0],z);
 	}
 
+	/* chequeo reqs */
 	if ( !1 || !2)
 		gp_uso(0);
 
 
-	for (i=0; i<100; i++)
-	{
-		for (j=0; j<5; j++)
-		{
-			mne[i][j] = ( nep ) malloc (sizeof(ne));
-			if ( mne[i][j] == NULL )
-				error(951);
-
-			sprintf ( (*mne[i][j]).ne_n,"neu_%3d_%3d",i,j );
-		}
-	}
-
-	for (i=0; i<100; i++)
-	{
-		for (j=0; j<5; j++)
-		{
-
-			printf ("%3d %3d %s \n",i,j,(*mne[i][j]).ne_n);
-			printf ("%3d %3d %s \n",i,j,w(i,j)->ne_n);
-			printf ("%3d %3d %s \n",i,j,(*w(i,j)).ne_n);
-			printf ("%3d %3d %s \n",i,j,W(i,j,ne_n) );
-			printf ("%3d %3d %s \n",i,j,q(i,j,ne_n) );
-		}
-	}
+	/* bloque principal */
 
 		
 	/* proceso */
@@ -6985,5 +7187,57 @@ int	pro_prue3()
 }
 
 
+#endif
+
+
+
+#if 0
+
+#include <stdio.h>
+
+// Declara el tipo de función que deseas apuntar
+typedef void (*FuncPtr)(int);
+
+// Define algunas funciones que coincidan con este tipo
+void funcion1(int x) {
+    printf("Funcion 1: %d\n", x);
+}
+
+void funcion2(int x) {
+    printf("Funcion 2: %d\n", x);
+}
+
+void funcion3(int x) {
+    printf("Funcion 3: %d\n", x);
+}
+
+int main() {
+    // Declara el vector de punteros a funciones
+    FuncPtr funciones[3];
+
+    // Asigna las direcciones de las funciones al vector
+    funciones[0] = &funcion1;
+    funciones[1] = &funcion2;
+    funciones[2] = &funcion3;
+
+    // Usa el vector de punteros a funciones
+    int i;
+    for (i = 0; i < 3; i++) {
+        funciones[i](i + 1); // Llama a la función con un argumento
+    }
+
+    return 0;
+}
+
+
+
 
 #endif
+
+
+
+
+
+
+
+
