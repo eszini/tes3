@@ -16,7 +16,8 @@ int sumar(int num_args, ...) {
     return suma;
 }
 
-int main() {
+int main() 
+{
     // Llama a la función sumar con diferentes números de argumentos
     printf("Suma: %d\n", sumar(3, 1, 2, 3));
     printf("Suma: %d\n", sumar(5, 10, 20, 30, 40, 50));
